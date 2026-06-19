@@ -1,0 +1,25 @@
+# Visual Studio
+.vs/
+bin/
+obj/
+
+# Rider
+.idea/
+
+# User Settings
+*.user
+*.suo
+
+# NuGet
+packages/
+
+# Logs
+*.log
+
+# Build output
+Debug/
+Release/
+
+# Windows
+Thumbs.db
+Desktop.ini

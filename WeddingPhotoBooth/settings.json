@@ -1,0 +1,14 @@
+{
+    "CountdownFirst": 10,
+    "CountdownNext": 4,
+    "PicturesPerSession": 3,
+    "PreviewTimeoutSeconds": 20,
+    "AutoReturnToIdle": true,
+    "SaveDirectory": "C:\\WeddingPhotos",
+    "PrintCopies": 1,
+    "PrinterName": "Daniels Tintenpinkler",
+    "OmCaptureProcessName": "OM Capture",
+    "WeddingText": "Daniel ♥ Annabelle",
+    "DateText": "10.10.2026",
+    "Template": "Default"
+}

@@ -1,0 +1,190 @@
+﻿<Window x:Class="WeddingPhotoBooth.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:models="clr-namespace:WeddingPhotoBooth.Models"
+        Title="Wedding Photo Booth"
+        WindowState="Maximized"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Opacity = "1.0">
+    <Grid>
+
+        <!-- ===================== -->
+        <!-- 1. IDLE / STARTSCREEN -->
+        <!-- ===================== -->
+        <Grid Background="#202020">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Visible"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding State}" Value="{x:Static models:PhotoBoothState.Idle}">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding State}" Value="{x:Static models:PhotoBoothState.Countdown}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding State}" Value="{x:Static models:PhotoBoothState.Capturing}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding State}" Value="{x:Static models:PhotoBoothState.Processing}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding State}" Value="{x:Static models:PhotoBoothState.Preview}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+
+                <TextBlock Text="Daniel ♥ Annabelle"
+                           FontSize="48"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,20"/>
+
+                <TextBlock Text="10.10.2026"
+                           FontSize="24"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,50"/>
+
+                <Button Width="400"
+                        Height="120"
+                        FontSize="36"
+                        Click="StartButton_Click">
+                    📸 Foto starten
+                </Button>
+
+                <Button Width="400"
+                        Height="120"
+                        FontSize="36"
+                        Click="DebugButton_Click">
+                    TESTBUTTON
+                </Button>
+
+                
+            </StackPanel>
+        </Grid>
+        
+
+        <!-- ===================== -->
+        <!-- 2. COUNTDOWN -->
+        <!-- ===================== -->
+        <Grid>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding State}" 
+                                     Value="{x:Static models:PhotoBoothState.Countdown}">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>          
+            
+            <!-- leichter Schleier -->
+            <Rectangle Fill="#20000000"/>
+
+            <!-- Kreis hinter der Zahl -->
+            <Border
+                Width="400"
+                Height="400"
+                CornerRadius="200"
+                Background="#80000000"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
+
+            <StackPanel
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+    
+                <TextBlock
+                    Text="{Binding CurrentPhoto, StringFormat=Foto {0} von 3}"
+                    FontSize="40"
+                    Foreground="White"
+                    HorizontalAlignment="Center"/>
+    
+                <TextBlock
+                    Text="{Binding CountdownValue}"
+                    FontSize="200"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- ===================== -->
+        <!-- 3. PROCESSING -->
+        <!-- ===================== -->
+        <Grid Background="#202020">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding State}" Value="{x:Static models:PhotoBoothState.Processing}">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+
+            <TextBlock Text="Bitte lächeln… 📸"
+                       FontSize="80"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- ===================== -->
+        <!-- 4. PREVIEW  -->
+        <!-- ===================== -->
+        <Grid Background="#202020">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding State}" Value="{x:Static models:PhotoBoothState.Preview}">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+
+                <Image
+                        Source="{Binding PreviewImage}"
+                        Stretch="Uniform"
+                        MaxHeight="700"
+                        Margin="20"/>           
+                <TextBlock Text="Vorschau"
+                           FontSize="60"
+                           Foreground="White"
+                           HorizontalAlignment="Center"/>
+
+                <Button Content="Drucken"
+                        Width="300"
+                        Height="80"
+                        Margin="0,20,0,0"
+                        Click="PrintButton_Click">
+                </Button>
+                <Button Content="Verwerfen und Neustart"
+                        Width="300"
+                        Height="80"
+                        Margin="0,20,0,0"
+                        FontSize="21"
+                        Click="NeustartButton_Click">
+                </Button>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Window>
