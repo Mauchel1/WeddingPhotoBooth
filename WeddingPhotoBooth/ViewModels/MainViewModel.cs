@@ -43,14 +43,15 @@ public class MainViewModel : INotifyPropertyChanged
 
     public MainViewModel()
     {
+        if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
+            return;
+
         _settings = SettingsService.Load();
 
         _sessionService = new SessionService(_settings);
 
         _watcher = new FileWatcherService(_settings.SaveDirectory);
-
         _watcher.ImageDetected += OnImageDetected;
-
         _watcher.Start();
 
         generator = new PhotoStripGenerator();
@@ -124,31 +125,25 @@ public class MainViewModel : INotifyPropertyChanged
         //System.Windows.Application.Current.MainWindow.Opacity = 1.0;
         State = PhotoBoothState.Processing;
 
-        var preview =
+        /*var preview =
             generator.GeneratePreview(
                 _sessionService.CurrentSession.Photos,
                 _settings);
-
+        */
 
         var printImage =
             generator.GeneratePrint(
         _sessionService.CurrentSession.Photos,
         _settings);
 
-        PreviewImage = preview;
 
         var exportService =
             new ImageExportService();
-
 
         string stripFile =
             Path.Combine(
                 _sessionService.CurrentSession.SessionFolder,
                 "Strip.jpg");
-
-
-        System.Diagnostics.Debug.WriteLine(
-        $"Preview: {preview.PixelWidth} x {preview.PixelHeight}");
 
         System.Diagnostics.Debug.WriteLine(
             $"Print: {printImage.PixelWidth} x {printImage.PixelHeight}");
@@ -159,6 +154,8 @@ public class MainViewModel : INotifyPropertyChanged
 
         _sessionService.CurrentSession.StripFile =
             stripFile;
+
+        PreviewImage = new BitmapImage(new Uri(stripFile)); ;
 
         State = PhotoBoothState.Preview;
     }

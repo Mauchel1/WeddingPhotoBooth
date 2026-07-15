@@ -25,5 +25,18 @@ namespace WeddingPhotoBooth.Models
         public string DateText { get; set; } = "10.10.2026";
 
         public string Template { get; set; } = "Default";
+
+        public string TemplateFile { get; set; } = "template.jpg";
+
+        public List<PhotoSlot> PhotoSlots { get; set; } = new();
+
+    }
+
+    public class PhotoSlot
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
     }
 }

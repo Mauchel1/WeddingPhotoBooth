@@ -1,6 +1,6 @@
 {
     "CountdownFirst": 10,
-    "CountdownNext": 4,
+    "CountdownNext": 5,
     "PicturesPerSession": 3,
     "PreviewTimeoutSeconds": 20,
     "AutoReturnToIdle": true,
@@ -10,5 +10,46 @@
     "OmCaptureProcessName": "OM Capture",
     "WeddingText": "Daniel ♥ Annabelle",
     "DateText": "10.10.2026",
-    "Template": "Default"
+    "Template": "Default",
+    "TemplateFile": "template.jpg",
+
+    "PhotoSlots": [
+        {
+            "X": 89,
+            "Y": 268,
+            "Width": 443,
+            "Height": 329
+        },
+        {
+            "X": 89,
+            "Y": 619,
+            "Width": 443,
+            "Height": 329
+        },
+        {
+            "X": 89,
+            "Y": 971,
+            "Width": 443,
+            "Height": 330
+        },
+        {
+            "X": 653,
+            "Y": 268,
+            "Width": 439,
+            "Height": 329
+        },
+        {
+            "X": 653,
+            "Y": 619,
+            "Width": 439,
+            "Height": 329
+        },
+        {
+            "X": 653,
+            "Y": 971,
+            "Width": 439,
+            "Height": 330
+        }
+    ]
+
 }

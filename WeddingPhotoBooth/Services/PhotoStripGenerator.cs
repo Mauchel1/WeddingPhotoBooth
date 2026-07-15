@@ -14,8 +14,7 @@ public class PhotoStripGenerator
 
         return template.Create(
             photos,
-            settings.WeddingText,
-            settings.DateText);
+            settings);
     }
 
     public BitmapSource GeneratePrint(
@@ -26,7 +25,8 @@ public class PhotoStripGenerator
 
         return template.CreatePrint(
             photos,
-            settings.WeddingText,
-            settings.DateText);
+            settings);
     }
+
+    
 }
