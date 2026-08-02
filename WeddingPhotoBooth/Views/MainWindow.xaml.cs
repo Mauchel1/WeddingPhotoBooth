@@ -59,6 +59,9 @@ namespace WeddingPhotoBooth
             _vm.Restart();
         }
 
-
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 }

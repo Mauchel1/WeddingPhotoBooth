@@ -15,12 +15,16 @@
         Background="Transparent"
         AllowsTransparency="True"
         Opacity = "1.0">
-    <Grid>
 
+    <Grid>
         <!-- ===================== -->
         <!-- 1. IDLE / STARTSCREEN -->
         <!-- ===================== -->
         <Grid Background="#202020">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="239*"/>
+                <ColumnDefinition Width="165*"/>
+            </Grid.ColumnDefinitions>
             <Grid.Style>
                 <Style TargetType="Grid">
                     <Setter Property="Visibility" Value="Visible"/>
@@ -44,7 +48,7 @@
                 </Style>
             </Grid.Style>
 
-            <Grid>
+            <Grid Grid.ColumnSpan="2">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -219,6 +223,34 @@
                 </StackPanel>
             </Grid>
         </Grid>
+
+
+        
+        <Button
+            Width="40"
+            Height="40"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Margin="0,20,20,0"
+            FontSize="24"
+            Background="#80000000"
+            Foreground="White"
+            BorderBrush="Transparent"
+            Click="ExitButton_Click">
+            
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding State}" Value="{x:Static models:PhotoBoothState.Idle}">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            
+                X
+        </Button>
 
     </Grid>
 </Window>
