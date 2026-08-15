@@ -32,7 +32,18 @@ namespace WeddingPhotoBooth
             _vm = new MainViewModel();
             DataContext = _vm;
 
+            Closing += MainWindow_Closing;
+
         }
+
+        private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (DataContext is MainViewModel vm)
+            {
+                vm.Dispose();
+            }
+        }
+
 
         private async void StartButton_Click(object sender, RoutedEventArgs e)
         {

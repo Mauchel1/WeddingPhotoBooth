@@ -14,7 +14,7 @@ using static System.Windows.Forms.AxHost;
 
 namespace WeddingPhotoBooth.ViewModels;
 
-public class MainViewModel : INotifyPropertyChanged
+public class MainViewModel : INotifyPropertyChanged, IDisposable
 {
 
     [DllImport("user32.dll")]
@@ -29,6 +29,10 @@ public class MainViewModel : INotifyPropertyChanged
     private readonly CameraService _cameraService = new();
     private PhotoStripGenerator generator;
     private readonly PrinterService _printerService = new PrinterService();
+    //private readonly DigiUsbService _usb = new();
+    private NanoController? _nano;
+
+
     public ImageSource? PreviewImage
     {
         get => _previewImage;
@@ -55,6 +59,17 @@ public class MainViewModel : INotifyPropertyChanged
         _watcher.Start();
 
         generator = new PhotoStripGenerator();
+
+        _nano = NanoController.Connect();
+        if (_nano == null)
+        {
+            System.Windows.MessageBox.Show("Nano nicht gefunden.");
+        } 
+        
+        /*if (!_usb.Connect())
+        {
+            System.Windows.MessageBox.Show("DigiUSB nicht gefunden.");
+        }*/
 
     }
 
@@ -97,6 +112,17 @@ public class MainViewModel : INotifyPropertyChanged
     {
         _sessionService.CreateNewSession();
 
+
+        if (_nano != null)
+        {
+            if (!_nano.RelayOn())
+            {
+                System.Diagnostics.Debug.WriteLine("Nano antwortet nicht.");
+            }
+        }
+
+        //_usb.Send((byte)DigiCommand.RelayOn);
+
         //System.Windows.Application.Current.MainWindow.Opacity = 0.2;
         for (int i = 1; i <= _settings.PicturesPerSession; i++)
         {
@@ -117,10 +143,15 @@ public class MainViewModel : INotifyPropertyChanged
                 System.Windows.MessageBox.Show(
                     "Es ist ein Fehler beim Aufnehmen des Fotos aufgetreten. Bitte überprüfe die Kamera und versuche es erneut.");
                 State = PhotoBoothState.Idle;
+                _nano?.RelayOff();
+                //_usb.Send((byte)DigiCommand.RelayOff);
                 //System.Windows.Application.Current.MainWindow.Opacity = 1.0;
                 return;
             }
         }
+
+        _nano?.RelayOff();
+        //_usb.Send((byte)DigiCommand.RelayOff);
 
         //System.Windows.Application.Current.MainWindow.Opacity = 1.0;
         State = PhotoBoothState.Processing;
@@ -261,6 +292,20 @@ public class MainViewModel : INotifyPropertyChanged
             System.Windows.MessageBox.Show(
                 $"Druck auf '{_settings.PrinterName}' fehlgeschlagen.");
         }
+    }
+
+    public void Dispose()
+    {
+        try
+        {
+            _nano?.RelayOff();
+        }
+        catch
+        {
+            // Nano eventuell schon weg
+        }
+
+        _nano?.Dispose();
     }
 
 }
