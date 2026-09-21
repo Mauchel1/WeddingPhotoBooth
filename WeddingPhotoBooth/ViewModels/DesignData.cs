@@ -11,12 +11,12 @@ public class DesignMainViewModel : MainViewModel
     public DesignMainViewModel()
     {
         // Gewünschte Ansicht in der Vorschau in Visual Studio festlegen
-        State = PhotoBoothState.Preview;
+        State = PhotoBoothState.Idle;
 
         // Beispieldaten
         CurrentPhoto = 2;
         CountdownValue = 3;
-
+        
         // Optional ein Testbild
          PreviewImage = new BitmapImage(new Uri("pack://siteoforigin:,,,/template.jpg"));
     }

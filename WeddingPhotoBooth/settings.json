@@ -1,55 +1,57 @@
 {
-    "CountdownFirst": 10,
-    "CountdownNext": 5,
-    "PicturesPerSession": 3,
-    "PreviewTimeoutSeconds": 20,
-    "AutoReturnToIdle": true,
-    "SaveDirectory": "C:\\WeddingPhotos",
-    "PrintCopies": 1,
-    "PrinterName": "Daniels Tintenpinkler",
-    "OmCaptureProcessName": "OM Capture",
-    "WeddingText": "Daniel ♥ Annabelle",
-    "DateText": "10.10.2026",
-    "Template": "Default",
-    "TemplateFile": "template.jpg",
+  "CountdownFirst": 10,
+  "CountdownNext": 8,
+  "PicturesPerSession": 3,
+  "PreviewTimeoutSeconds": 20,
+  "AutoReturnToIdle": true,
+  "SaveDirectory": "C:\\WeddingPhotos",
+  "PrintCopies": 1,
+  "PrinterName": "Canon SELPHY CP1500 WLAN",
+  "PrinterFakeName": "Microsoft Print to PDF",
+  "PrinterFakeName2": "Canon SELPHY CP1500 WLAN",
+  "OmCaptureProcessName": "OM Capture",
+  "WeddingText": "Daniel ♥ Annabelle",
+  "DateText": "10.10.2026",
+  "Template": "Default",
+  "TemplateFile": "fotostreifen3gimp.png",
 
-    "PhotoSlots": [
-        {
-            "X": 89,
-            "Y": 268,
-            "Width": 443,
-            "Height": 329
-        },
-        {
-            "X": 89,
-            "Y": 619,
-            "Width": 443,
-            "Height": 329
-        },
-        {
-            "X": 89,
-            "Y": 971,
-            "Width": 443,
-            "Height": 330
-        },
-        {
-            "X": 653,
-            "Y": 268,
-            "Width": 439,
-            "Height": 329
-        },
-        {
-            "X": 653,
-            "Y": 619,
-            "Width": 439,
-            "Height": 329
-        },
-        {
-            "X": 653,
-            "Y": 971,
-            "Width": 439,
-            "Height": 330
-        }
-    ]
+  "PhotoSlots": [
+    {
+      "X": 81,
+      "Y": 312,
+      "Width": 432,
+      "Height": 325
+    },
+    {
+      "X": 81,
+      "Y": 691,
+      "Width": 432,
+      "Height": 325
+    },
+    {
+      "X": 81,
+      "Y": 1071,
+      "Width": 432,
+      "Height": 326
+    },
+    {
+      "X": 667,
+      "Y": 312,
+      "Width": 432,
+      "Height": 324
+    },
+    {
+      "X": 667,
+      "Y": 691,
+      "Width": 432,
+      "Height": 325
+    },
+    {
+      "X": 667,
+      "Y": 1071,
+      "Width": 432,
+      "Height": 326
+    }
+  ]
 
 }
